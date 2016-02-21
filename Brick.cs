@@ -28,16 +28,26 @@ public class Brick : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
+        bool isBreakable = (this.tag == "Block");
+        if (isBreakable)
+        {
+            handleHits();
+        }
+       
+    }
+
+    void handleHits()
+    {
         timesHit++;
         maxHits = hitSprites.Length + 1;
         if (timesHit >= maxHits)
         {
             Destroy(gameObject);
-        } else
+        }
+        else
         {
             LoadSprites();
         }
-       
     }
 
     void LoadSprites()
