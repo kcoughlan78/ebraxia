@@ -9,7 +9,8 @@ public class Brick : MonoBehaviour
     private int timesHit;
     private LevelManager levelManager;
     private int blocks;
-
+    private AudioSource audioplay;
+    public AudioClip ballbreak;
     
 
     // Use this for initialization
@@ -17,7 +18,8 @@ public class Brick : MonoBehaviour
     {
         timesHit = 0;
         levelManager = GameObject.FindObjectOfType<LevelManager>();
-        
+        audioplay = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -42,6 +44,7 @@ public class Brick : MonoBehaviour
         maxHits = hitSprites.Length + 1;
         if (timesHit >= maxHits)
         {
+            AudioSource.PlayClipAtPoint(ballbreak, transform.position);
             Destroy(gameObject);
         }
         else

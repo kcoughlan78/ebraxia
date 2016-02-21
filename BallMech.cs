@@ -9,6 +9,7 @@ public class BallMech : MonoBehaviour {
     private Vector3 paddleToBallVector;
     public float VelocityXMin = 3;
     public float VelocityXMax = 7;
+    
 
 	// Use this for initialization
 	void Start () {
@@ -16,6 +17,7 @@ public class BallMech : MonoBehaviour {
         paddleToBallVector = this.transform.position - paddle.transform.position;
         print(paddleToBallVector);
         rb2d = GetComponent<Rigidbody2D>();
+        
 	}
 
     // Update is called once per frame
@@ -31,5 +33,11 @@ public class BallMech : MonoBehaviour {
                 this.rb2d.velocity = new Vector2(Random.Range(VelocityXMin, VelocityXMax), 16.2f);
             }
         }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Vector2 tweak = new Vector2(Random.Range(-0.1f, 0.2f), Random.Range(-0.1f, 0.2f));
+        this.rb2d.velocity += tweak;
     }
 }
