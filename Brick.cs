@@ -11,6 +11,7 @@ public class Brick : MonoBehaviour
     private int blocks;
     private AudioSource audioplay;
     public AudioClip ballbreak;
+    public GameObject smoke;
     
 
     // Use this for initialization
@@ -44,6 +45,7 @@ public class Brick : MonoBehaviour
         maxHits = hitSprites.Length + 1;
         if (timesHit >= maxHits)
         {
+            Instantiate (smoke, new Vector3 (this.transform.position.x, this.transform.position.y, -1f), Quaternion.identity);
             AudioSource.PlayClipAtPoint(ballbreak, transform.position);
             Destroy(gameObject);
         }
@@ -58,7 +60,9 @@ public class Brick : MonoBehaviour
         int spriteIndex = timesHit - 1;
         if (hitSprites[spriteIndex]) { 
             this.GetComponent<SpriteRenderer>().sprite = hitSprites[spriteIndex];
-        }
+        } else
+        {
+            Debug.LogError("Missing Sprite");        } 
     }
 
    

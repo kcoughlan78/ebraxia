@@ -5,7 +5,7 @@ public class BallMech : MonoBehaviour {
 
     private Paddle paddle;
     public Rigidbody2D rb2d;
-    private bool hasStarted = false;
+    public bool hasStarted = false;
     private Vector3 paddleToBallVector;
     public float VelocityXMin = 3;
     public float VelocityXMax = 7;
@@ -13,12 +13,16 @@ public class BallMech : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        BalltoPaddle();
+	}
+
+    public void BalltoPaddle()
+    {
         paddle = GameObject.FindObjectOfType<Paddle>();
         paddleToBallVector = this.transform.position - paddle.transform.position;
         print(paddleToBallVector);
         rb2d = GetComponent<Rigidbody2D>();
-        
-	}
+    }
 
     // Update is called once per frame
     void Update()
