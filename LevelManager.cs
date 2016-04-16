@@ -4,6 +4,17 @@ using System.Collections;
 
 public class LevelManager : MonoBehaviour {
 
+    public float autoLoadNextLevel;
+    public bool autoLoad = false;
+    
+    void Start()
+    {
+        if (autoLoad)
+        {
+            Invoke("LoadNextLevel", autoLoadNextLevel);
+        }
+    }
+
     public void LoadLevel(string name)
     {
         Debug.Log("Level load requested for: " + name);

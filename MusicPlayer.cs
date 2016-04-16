@@ -4,9 +4,13 @@ using System.Collections;
 public class MusicPlayer : MonoBehaviour {
 
     static MusicPlayer instance = null;
-
+    private AudioSource audio;
     void Awake ()
     {
+
+        audio = GameObject.FindObjectOfType<AudioSource>();
+        audio.volume = PlayerPrefMgt.GetMasterVolume();
+
         if (instance != null)
         {
             Destroy(gameObject);
@@ -21,10 +25,6 @@ public class MusicPlayer : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         Debug.Log("Music Player Start " + GetInstanceID());
-	}
+    }
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

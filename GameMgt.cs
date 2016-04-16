@@ -9,16 +9,19 @@ public class GameMgt : MonoBehaviour {
     public Text text;
     public Text levelText;
     private LevelManager levelManager;
+    private int sceneNumber;
+
 
     // Use this for initialization
     void Start () {
         playerLives = 3;
         levelManager = GameObject.FindObjectOfType<LevelManager>();
+        sceneNumber = SceneManager.GetActiveScene().buildIndex - 1;
     }
 	
 	// Update is called once per frame
 	void Update () {
         text.text = "Lives: " + playerLives;
-        levelText.text = "Level: " + SceneManager.GetActiveScene().buildIndex;
+        levelText.text = "Level: " + sceneNumber;
 	}
 }
