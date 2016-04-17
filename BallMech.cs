@@ -30,11 +30,22 @@ public class BallMech : MonoBehaviour {
         if (!hasStarted)
         {
             this.transform.position = paddle.transform.position + paddleToBallVector;
-            if (Input.GetMouseButtonDown(0))
+            if (paddle.ControlSettings < 1)
             {
-                print("Clicked");
-                hasStarted = true;
-                this.rb2d.velocity = new Vector2(Random.Range(VelocityXMin, VelocityXMax), 16.2f);
+                if (Input.GetMouseButtonDown(0))
+                {
+                    print("Clicked");
+                    hasStarted = true;
+                    this.rb2d.velocity = new Vector2(Random.Range(VelocityXMin, VelocityXMax), 16.2f);
+                }
+            } else if (paddle.ControlSettings > 0)
+            {
+                if (Input.GetKeyDown("space"))
+                {
+                    print("Pressed");
+                    hasStarted = true;
+                    this.rb2d.velocity = new Vector2(Random.Range(VelocityXMin, VelocityXMax), 16.2f);
+                }
             }
         }
     }

@@ -7,6 +7,7 @@ public class PlayerPrefMgt : MonoBehaviour {
     const string MASTER_VOLUME_KEY = "master_volume";
     const string DIFFICULTY_KEY = "difficulty";
     const string LEVEL_KEY = "level_unlocked_";
+    const string CONTROL_KEY = "control_";
 
     public static void SetMasterVolume (float volume)
     {
@@ -48,5 +49,24 @@ public class PlayerPrefMgt : MonoBehaviour {
             return false;
         }
     }
+
+    public static void SetControl (int control)
+    {
+        if (control >= 0 && control <= 1)
+        {
+            PlayerPrefs.SetInt(CONTROL_KEY, control);
+        }
+        else
+        {
+            Debug.LogError("Controls out of range");
+        }
+    }
+
+    public static int GetControl()
+    {
+        return PlayerPrefs.GetInt(CONTROL_KEY);
+    }
+
+
 
 }
