@@ -9,7 +9,7 @@ public class Paddle : MonoBehaviour {
     private BallMech ball;
     //below var setting for keyboard controls
     public int ControlSettings;
-    private float speed = 10.0f;
+    private float speed = 15.0f;
     float xmin;
     float xmax;
     public float padding = 1f;

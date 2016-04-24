@@ -15,7 +15,7 @@ public class WinLevel : MonoBehaviour {
 
     void Update()
     {
-        brickcount = GameObject.FindGameObjectsWithTag("Block").Length;
+        brickcount = GameObject.FindGameObjectsWithTag("Block").Length + GameObject.FindGameObjectsWithTag("Rezos").Length;
         if (brickcount < 1)
         {
             SimulateWin();

@@ -39,21 +39,29 @@ public class Brick : MonoBehaviour
        
     }
 
+    
     void handleHits()
     {
         timesHit++;
         maxHits = hitSprites.Length + 1;
         if (timesHit >= maxHits)
         {
-            Instantiate (smoke, new Vector3 (this.transform.position.x, this.transform.position.y, -1f), Quaternion.identity);
+            GameObject smokePuff = Instantiate(smoke, transform.position, Quaternion.identity) as GameObject;
+            //smokePuff.GetComponentInParent<ParticleSystem>().startColor = gameObject.GetComponent<SpriteRenderer>().color;
             AudioSource.PlayClipAtPoint(ballbreak, transform.position);
-            Destroy(gameObject);
+            KillBrick();
         }
         else
         {
             LoadSprites();
         }
     }
+
+    void KillBrick()
+    {
+        Destroy(gameObject);
+    }
+
 
     void LoadSprites()
     {
