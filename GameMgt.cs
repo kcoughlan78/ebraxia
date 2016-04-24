@@ -16,7 +16,7 @@ public class GameMgt : MonoBehaviour {
     void Start () {
         playerLives = 3;
         levelManager = GameObject.FindObjectOfType<LevelManager>();
-        sceneNumber = SceneManager.GetActiveScene().buildIndex - 1;
+        sceneNumber = SceneManager.GetActiveScene().buildIndex - 2;
     }
 	
 	// Update is called once per frame
