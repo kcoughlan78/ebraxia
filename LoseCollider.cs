@@ -25,7 +25,7 @@ public class LoseCollider : MonoBehaviour {
             gamemgt.playerLives--;
             print(gamemgt.playerLives);
             ball.hasStarted = false;
-            Vector3 ballReset = new Vector3(paddle.transform.position.x, paddle.transform.position.y + 0.24f, 0f);
+            Vector3 ballReset = new Vector3(paddle.transform.position.x, paddle.transform.position.y + 0.33f, 0f);
             ball.transform.position = ballReset;
             ball.BalltoPaddle();
         }

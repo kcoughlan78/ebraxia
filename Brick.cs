@@ -12,6 +12,8 @@ public class Brick : MonoBehaviour
     private AudioSource audioplay;
     public AudioClip ballbreak;
     public GameObject smoke;
+    string[] brickArray = new string[] { "Rezos", "Altosz", "ElTerras", "Guolz" };
+    public bool GoulzLeft;
     
 
     // Use this for initialization
@@ -31,10 +33,15 @@ public class Brick : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        bool isBreakable = (this.tag == "Block");
-        if (isBreakable)
+
+        string tagToCheck = this.tag;
+
+        foreach (string x in brickArray)
         {
-            handleHits();
+            if (x.Contains(tagToCheck))
+            {
+                handleHits();
+            }
         }
        
     }
@@ -47,7 +54,7 @@ public class Brick : MonoBehaviour
         if (timesHit >= maxHits)
         {
             GameObject smokePuff = Instantiate(smoke, transform.position, Quaternion.identity) as GameObject;
-            //smokePuff.GetComponentInParent<ParticleSystem>().startColor = gameObject.GetComponent<SpriteRenderer>().color;
+            smokePuff.GetComponentInParent<ParticleSystem>().startColor = gameObject.GetComponent<SpriteRenderer>().color;
             AudioSource.PlayClipAtPoint(ballbreak, transform.position);
             KillBrick();
         }
