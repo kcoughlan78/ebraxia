@@ -12,9 +12,17 @@ public class Brick : MonoBehaviour
     private AudioSource audioplay;
     public AudioClip ballbreak;
     public GameObject smoke;
-    string[] brickArray = new string[] { "Rezos", "Altosz", "ElTerras", "Guolz" };
+    string[] brickArray = new string[] { "Rezos", "Altosz", "Elterras", "Guolz" };
     public bool GoulzLeft;
-    
+    private bool movingRight = true;
+    public float width = 16;
+    public float height = 5;
+    public float speed = 2;
+    public float gforce = 0.2f;
+    private float startForm;
+    private float goulzXMin; // for brick movement to Ebraxia
+    private float goulzXMax; // for brick movement to Ebraxia
+
 
     // Use this for initialization
     void Start()
@@ -22,14 +30,79 @@ public class Brick : MonoBehaviour
         timesHit = 0;
         levelManager = GameObject.FindObjectOfType<LevelManager>();
         audioplay = GetComponent<AudioSource>();
+        formOrganiser();
+
+        if (GoulzLeft)
+        {
+            movingRight = false;
+        }
+
 
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+        goulzFormation();
+        ATFormation();
     }
+
+    void formOrganiser() // for brick movement to Ebraxia
+    {
+        if (this.tag == "Guolz") {
+
+            if (GoulzLeft) {
+
+                startForm = 0;
+
+            }else
+            {
+                startForm = 1;
+            }
+        
+        float distanceToCamera = transform.position.z - Camera.main.transform.position.z;
+        Vector3 leftedge = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, distanceToCamera));
+        Vector3 rightedge = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, distanceToCamera));
+        goulzXMin = leftedge.x;
+        goulzXMax = rightedge.x;
+        }
+    }
+
+    void goulzFormation()// for brick movement to Ebraxia
+    {
+        if (this.tag == "Guolz")
+        {
+            if (transform.position.x >= (goulzXMax - (width / 2)))
+            {
+                movingRight = false;
+            }
+            else if (transform.position.x <= (goulzXMin + (width / 2)))
+            {
+                movingRight = true;
+            }
+
+            if (movingRight)
+            {
+                transform.position += Vector3.right * speed * Time.deltaTime;
+            }
+            else
+            {
+                transform.position += Vector3.left * speed * Time.deltaTime;
+            }
+        }
+    }
+
+    void ATFormation()
+    {
+        if (this.tag == "Altosz")
+        {
+            transform.position += Vector3.up * gforce * Time.deltaTime;
+        }else if (this.tag == "Elterras")
+        {
+            transform.position += Vector3.down * gforce * Time.deltaTime;
+        }
+    }
+
 
     void OnCollisionEnter2D(Collision2D col)
     {
