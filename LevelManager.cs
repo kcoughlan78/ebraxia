@@ -7,8 +7,14 @@ public class LevelManager : MonoBehaviour {
     public float autoLoadNextLevel;
     public bool autoLoad = false;
     
+
+
     void Start()
     {
+        float currentScene = SceneManager.GetActiveScene().buildIndex;
+        Debug.Log(currentScene);
+
+
         if (autoLoad)
         {
             Invoke("LoadNextLevel", autoLoadNextLevel);
@@ -36,6 +42,21 @@ public class LevelManager : MonoBehaviour {
     public void LoadNextLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void loadLevelIndex()
+    {
+        SceneManager.LoadScene("level_menu");
+    }
+
+    public void loadRequestedLevel(int level)
+    {
+        SceneManager.LoadScene(level);
+    }
+
+    public void replay()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 }

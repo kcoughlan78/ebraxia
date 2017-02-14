@@ -16,12 +16,14 @@ public class HiLoCollider : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D trigger)
     {
-            gamemgt.playerLives = 0;
-            levelManager.LoadLevel("Lose");
+        Debug.Log("HitLose");
+        gamemgt.playerLives = 0;
+        levelManager.LoadLevel("Lose");
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("HitLoseC");
         gamemgt.playerLives = 0;
         levelManager.LoadLevel("Lose");
     }

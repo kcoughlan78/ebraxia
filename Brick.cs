@@ -18,7 +18,7 @@ public class Brick : MonoBehaviour
     public float width = 16;
     public float height = 5;
     public float speed = 2;
-    public float gforce = 0.2f;
+    public float gforce = 0.3f;
     private float startForm;
     private float goulzXMin; // for brick movement to Ebraxia
     private float goulzXMax; // for brick movement to Ebraxia

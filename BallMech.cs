@@ -54,5 +54,11 @@ public class BallMech : MonoBehaviour {
     {
         Vector2 tweak = new Vector2(Random.Range(-0.1f, 0.1f), Random.Range(-0.1f, 0.1f));
         this.rb2d.velocity += tweak;
+        this.rb2d.gravityScale = 1;
+    }
+
+    void OnTriggerEnter2D(Collider2D trigger)
+    {
+        this.rb2d.gravityScale = 1;
     }
 }

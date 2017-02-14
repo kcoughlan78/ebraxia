@@ -31,7 +31,8 @@ public class LoseCollider : MonoBehaviour {
         }
         else
         {
-            levelManager.LoadLevel("Lose");
+            gamemgt.Lose.SetActive(true);
+            paddle.autoplay = true;
         }
     }
 

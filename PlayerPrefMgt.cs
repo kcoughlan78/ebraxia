@@ -36,18 +36,21 @@ public class PlayerPrefMgt : MonoBehaviour {
     }
 
 
-    public static bool isLevelUnlocked(int level)
+    public static void SetLevelKey(int level)
     {
-        int LevelBool = PlayerPrefs.GetInt (LEVEL_KEY + level.ToString());
-        bool isLevelUnlocked = (LevelBool == 1);
-        if (level <= SceneManager.GetActiveScene().buildIndex - 2)
+        if (level >= 2)
         {
-            return isLevelUnlocked;
-        } else
+            PlayerPrefs.SetInt(LEVEL_KEY, level);
+        }
+        else
         {
             Debug.LogError("Level out of range");
-            return false;
         }
+    }
+
+    public static int GetLevelKey()
+    {
+        return PlayerPrefs.GetInt(LEVEL_KEY);
     }
 
     public static void SetControl (int control)
